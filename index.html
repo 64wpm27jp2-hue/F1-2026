@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>F1 2026 — NOUVELLE ÈRE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   VARIABLES & RESET
+══════════════════════════════════════════ */
+:root {
+  --ink: #080810;
+  --ink2: #0e0e1a;
+  --ink3: #141424;
+  --card: #0b0b18;
+  --border: #1c1c32;
+  --border2: #252540;
+  --txt: #dde0f0;
+  --muted: #5a5a80;
+  --muted2: #7a7a9a;
+  --cyan: #00f0ff;
+  --lime: #a8ff00;
+  --red: #ff1e00;
+  --amber: #ffaa00;
+  --violet: #9b5fff;
+  --gold: #ffd43b;
+  --silver: #c8cdd8;
+  --bronze: #cc8844;
+  --white: #f0f2ff;
+
+  --merc: #00e5cc;
+  --ferrari: #ff1800;
+  --mclaren: #ff8200;
+  --redbull: #1e41ff;
+  --aston: #006f62;
+  --alpine: #ff69b4;
+  --haas: #aaaaaa;
+  --rb: #4ea8cc;
+  --williams: #00a3e0;
+  --audi: #b8002a;
+  --cadillac: #c8a000;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--txt);
+  font-family:'Syne',sans-serif;
+  font-size:15px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* GRAIN */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size:200px;
+  pointer-events:none;z-index:9999;opacity:.6;
+}
+
+/* ══════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════ */
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:54px;
+  position:sticky;top:0;z-index:200;
+  background:rgba(8,8,16,0.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;letter-spacing:5px;
+  color:var(--white);
+  display:flex;align-items:center;gap:0.5rem;
+}
+.logo-year{color:var(--cyan);font-size:1.6rem;}
+.logo-badge{
+  font-family:'DM Mono',monospace;
+  font-size:0.6rem;letter-spacing:3px;color:var(--muted);
+  border:1px solid var(--border2);padding:2px 8px;border-radius:2px;
+  text-transform:uppercase;
+}
+.era-tag{
+  font-family:'DM Mono',monospace;
+  font-size:0.65rem;letter-spacing:2px;
+  color:var(--lime);
+  background:rgba(168,255,0,0.07);
+  border:1px solid rgba(168,255,0,0.2);
+  padding:3px 10px;border-radius:2px;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;
+  padding:4rem 2rem 3rem;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -10%,rgba(0,240,255,0.08) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 30% at 80% 80%,rgba(168,255,0,0.04) 0%,transparent 60%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(28,28,50,0.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(28,28,50,0.5) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black 20%,transparent 100%);
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:0.7rem;letter-spacing:5px;color:var(--cyan);
+  margin-bottom:1rem;opacity:.8;text-transform:uppercase;
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,10vw,8rem);
+  line-height:.95;
+  letter-spacing:8px;
+  color:var(--white);
+  position:relative;z-index:1;
+}
+.hero-title .accent{
+  color:transparent;
+  -webkit-text-stroke:2px var(--cyan);
+  text-shadow:0 0 60px rgba(0,240,255,0.3);
+}
+.hero-sub{
+  margin-top:1.2rem;
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;letter-spacing:3px;color:var(--muted2);
+}
+.hero-sub strong{color:var(--lime);}
+.hero-pills{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:0.6rem;margin-top:1.5rem;
+}
+.pill{
+  font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:1.5px;
+  padding:4px 12px;border-radius:2px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border2);color:var(--muted2);
+}
+.pill.hot{background:rgba(0,240,255,0.06);border-color:rgba(0,240,255,0.25);color:var(--cyan);}
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+.nav{
+  display:flex;overflow-x:auto;
+  background:var(--ink2);
+  border-bottom:1px solid var(--border);
+  padding:0 1rem;
+  scrollbar-width:none;
+  gap:0;
+}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:0.72rem;
+  letter-spacing:2px;text-transform:uppercase;
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);padding:1rem 1.2rem;
+  border-bottom:2px solid transparent;
+  white-space:nowrap;position:relative;top:1px;
+  transition:color .2s;
+}
+.nav-btn:hover{color:var(--txt);}
+.nav-btn.active{color:var(--cyan);border-bottom-color:var(--cyan);}
+
+/* ══════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════ */
+.sec{display:none;padding:2rem 1.5rem;max-width:1440px;margin:0 auto;}
+.sec.active{display:block;}
+.sec-label{
+  font-family:'DM Mono',monospace;font-size:0.62rem;
+  letter-spacing:4px;color:var(--cyan);text-transform:uppercase;
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ══════════════════════════════════════════
+   CIRCUIT SELECTOR
+══════════════════════════════════════════ */
+.cg{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:0.6rem;margin-bottom:2rem;
+}
+.cc{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:3px;padding:.8rem 1rem;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:.7rem;
+}
+.cc:hover{border-color:var(--border2);background:var(--ink3);}
+.cc.active{border-color:var(--cyan);background:rgba(0,240,255,0.05);}
+.cc .flag{font-size:1.3rem;flex-shrink:0;}
+.cc-n{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:2px;color:var(--white);}
+.cc-s{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);margin-top:1px;}
+
+/* ══════════════════════════════════════════
+   SETUP PANEL
+══════════════════════════════════════════ */
+.sp{display:none;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--ink2);}
+.sp.vis{display:block;}
+.sp-hd{
+  padding:1.25rem 1.5rem;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+  background:linear-gradient(135deg,rgba(0,240,255,0.06),transparent);
+}
+.sp-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;color:var(--white);
+}
+.sp-title .hl{color:var(--cyan);}
+.sp-meta{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);margin-top:2px;letter-spacing:1px;}
+.wx-wrap{display:flex;gap:.4rem;flex-wrap:wrap;}
+.wx{
+  font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:1px;
+  background:var(--ink3);border:1px solid var(--border2);
+  border-radius:2px;padding:.4rem .85rem;cursor:pointer;color:var(--muted2);transition:all .2s;
+}
+.wx:hover{color:var(--txt);border-color:var(--muted);}
+.wx.active{background:rgba(0,240,255,0.08);border-color:var(--cyan);color:var(--white);}
+.sp-body{padding:1.5rem;}
+
+/* CAR REC */
+.cr{
+  display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap;
+  margin-bottom:1.5rem;
+  padding:1.25rem;
+  background:var(--card);
+  border:1px solid var(--border2);border-radius:3px;
+  position:relative;overflow:hidden;
+}
+.cr::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,240,255,0.04),transparent);
+  pointer-events:none;
+}
+.cr-left{flex-shrink:0;}
+.cr-chip{
+  font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;
+  text-transform:uppercase;padding:2px 8px;border-radius:2px;
+  background:var(--cyan);color:var(--ink);font-weight:500;
+  display:inline-block;margin-bottom:.5rem;
+}
+.cr-car{
+  font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;
+}
+.cr-team{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted2);}
+.cr-note{flex:1;font-size:.82rem;line-height:1.6;color:var(--txt);min-width:200px;}
+.cr-tips{margin-top:.75rem;}
+.ct{
+  display:flex;gap:.5rem;padding:.35rem 0;
+  font-size:.78rem;color:var(--muted2);
+  border-top:1px solid var(--border);
+}
+.ct:first-child{border-top:none;}
+.ct-arrow{color:var(--lime);font-weight:700;flex-shrink:0;}
+
+/* SETUP GRID */
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:.85rem;}
+.sb{background:var(--card);border:1px solid var(--border);border-radius:3px;overflow:hidden;}
+.sb-t{
+  padding:.55rem 1rem;
+  font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.5rem;
+}
+.sb-t .icon{font-size:.9rem;}
+.sr{
+  display:flex;align-items:center;gap:.6rem;
+  padding:.42rem 1rem;
+  border-bottom:1px solid rgba(28,28,50,0.5);
+}
+.sr:last-child{border-bottom:none;}
+.sr-l{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);flex:1;white-space:nowrap;}
+.sr-bar{flex:1;height:3px;background:var(--border);border-radius:2px;max-width:70px;}
+.sr-fill{height:100%;border-radius:2px;transition:width .4s ease;}
+.sr-v{
+  font-family:'DM Mono',monospace;font-size:.78rem;font-weight:500;
+  min-width:75px;text-align:right;
+}
+
+/* ══════════════════════════════════════════
+   STANDINGS
+══════════════════════════════════════════ */
+.std-tbl{width:100%;border-collapse:collapse;}
+.std-tbl th{
+  font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--muted);
+  padding:.6rem 1rem;text-align:left;
+  border-bottom:2px solid var(--border);
+}
+.std-tbl td{
+  padding:.7rem 1rem;
+  border-bottom:1px solid rgba(28,28,50,0.6);
+  vertical-align:middle;
+}
+.std-tbl tr:hover td{background:rgba(255,255,255,0.015);}
+.pos-num{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;}
+.pos1{color:var(--gold);}
+.pos2{color:var(--silver);}
+.pos3{color:var(--bronze);}
+.posn{color:var(--muted);}
+.drv-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;}
+.drv-flag{margin-right:.35rem;font-size:1rem;}
+.team-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.45rem;vertical-align:middle;}
+.tm-name{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted2);}
+.pts-val{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:1px;text-align:right;}
+.pts-strip{height:2px;border-radius:1px;margin-top:3px;}
+.new-badge{
+  font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:1px;
+  background:rgba(168,255,0,0.12);color:var(--lime);
+  border:1px solid rgba(168,255,0,0.25);
+  padding:1px 5px;border-radius:1px;margin-left:6px;vertical-align:middle;
+}
+.rookie-badge{
+  font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:1px;
+  background:rgba(0,240,255,0.08);color:var(--cyan);
+  border:1px solid rgba(0,240,255,0.2);
+  padding:1px 5px;border-radius:1px;margin-left:6px;vertical-align:middle;
+}
+
+/* ══════════════════════════════════════════
+   CALENDAR
+══════════════════════════════════════════ */
+.cal-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:.85rem;
+}
+.race-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:3px;overflow:hidden;
+  transition:border-color .2s;
+}
+.race-card:hover{border-color:var(--border2);}
+.race-card.done{border-left:2px solid var(--lime);}
+.race-card.current{border-left:2px solid var(--cyan);}
+.race-card.upcoming{border-left:2px solid var(--border2);opacity:.7;}
+.rc-top{
+  padding:.9rem 1rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.65rem;
+}
+.rnd{
+  font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid var(--border2);
+  padding:2px 6px;border-radius:2px;color:var(--muted2);flex-shrink:0;
+}
+.rnd.sprint{background:rgba(168,255,0,0.07);border-color:rgba(168,255,0,0.2);color:var(--lime);}
+.rc-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);}
+.rc-body{padding:.85rem 1rem;}
+.rc-det{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-bottom:.25rem;}
+.rc-win{
+  display:flex;align-items:center;gap:.45rem;
+  margin-top:.6rem;font-size:.78rem;
+}
+.rc-win-lbl{color:var(--muted);font-family:'DM Mono',monospace;font-size:.62rem;}
+.rc-win-name{color:var(--gold);font-family:'Syne',sans-serif;font-weight:700;}
+.rc-upcoming-lbl{
+  font-family:'DM Mono',monospace;font-size:.62rem;
+  color:var(--muted);margin-top:.6rem;letter-spacing:1px;
+}
+
+/* ══════════════════════════════════════════
+   TIPS
+══════════════════════════════════════════ */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.85rem;}
+.tip-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:3px;padding:1.2rem;
+}
+.tip-icon{font-size:1.5rem;margin-bottom:.5rem;}
+.tip-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--cyan);
+  margin-bottom:.6rem;
+}
+.tip-body{font-size:.8rem;line-height:1.65;color:var(--txt);}
+.tip-body ul{margin-top:.5rem;padding-left:1.1rem;}
+.tip-body li{margin-bottom:.3rem;color:var(--muted2);}
+.tip-body li strong{color:var(--txt);}
+.tip-body .warn{color:var(--amber);}
+
+/* ══════════════════════════════════════════
+   REGLEMENTS 2026 TAB
+══════════════════════════════════════════ */
+.reg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:.85rem;}
+.reg-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:3px;padding:1.25rem;overflow:hidden;
+  position:relative;
+}
+.reg-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+}
+.reg-card.cyan::before{background:var(--cyan);}
+.reg-card.lime::before{background:var(--lime);}
+.reg-card.amber::before{background:var(--amber);}
+.reg-card.red::before{background:var(--red);}
+.reg-card.violet::before{background:var(--violet);}
+.reg-title{
+  font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;
+  color:var(--white);margin-bottom:.5rem;
+}
+.reg-body{font-size:.8rem;line-height:1.65;color:var(--muted2);}
+.reg-body strong{color:var(--txt);}
+.reg-tag{
+  display:inline-block;
+  font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:1.5px;
+  padding:2px 7px;border-radius:1px;margin-bottom:.6rem;
+}
+.tag-cyan{background:rgba(0,240,255,0.1);color:var(--cyan);border:1px solid rgba(0,240,255,0.2);}
+.tag-lime{background:rgba(168,255,0,0.08);color:var(--lime);border:1px solid rgba(168,255,0,0.2);}
+.tag-amber{background:rgba(255,170,0,0.1);color:var(--amber);border:1px solid rgba(255,170,0,0.2);}
+.tag-red{background:rgba(255,30,0,0.1);color:var(--red);border:1px solid rgba(255,30,0,0.2);}
+.tag-violet{background:rgba(155,95,255,0.1);color:var(--violet);border:1px solid rgba(155,95,255,0.2);}
+
+/* ══════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════ */
+.wrap-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:4px;overflow:hidden;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.anim{animation:fadeUp .35s ease both;}
+@media(max-width:700px){
+  .sg{grid-template-columns:1fr;}
+  .cg{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+  .standings-grid{grid-template-columns:1fr;}
+}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--ink2);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* live dot */
+.live{display:inline-flex;align-items:center;gap:.3rem;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    F1 <span class="logo-year">2026</span>
+    <span class="logo-badge">NOUVELLE ÈRE</span>
+  </div>
+  <div class="era-tag">⚡ RÈGLEMENTS RÉVOLUTIONNAIRES</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-eyebrow">saison 2026 · règlements inédits · 11 équipes · 22 pilotes</div>
+  <h1 class="hero-title">FORMULE<br><span class="accent">UNE</span></h1>
+  <p class="hero-sub"><strong>Moteurs hybrides 50/50 · Aéro active · Cadillac arrive</strong></p>
+  <div class="hero-pills">
+    <span class="pill hot">🌐 Cadillac rookie</span>
+    <span class="pill hot">⚡ 50% ERS power</span>
+    <span class="pill">🏎️ Aéro active</span>
+    <span class="pill">🆕 Madrid GP</span>
+    <span class="pill hot"><span class="live"><span class="live-dot"></span>Saison en cours</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn active" onclick="goTab('setups',this)">⚙️ CONFIGURATIONS</button>
+  <button class="nav-btn" onclick="goTab('drivers',this)">👤 PILOTES</button>
+  <button class="nav-btn" onclick="goTab('constructors',this)">🏗️ CONSTRUCTEURS</button>
+  <button class="nav-btn" onclick="goTab('calendar',this)">📅 CALENDRIER</button>
+  <button class="nav-btn" onclick="goTab('regs',this)">📋 RÈGLEMENTS 2026</button>
+  <button class="nav-btn" onclick="goTab('tips',this)">💡 CONSEILS</button>
+</nav>
+
+<!-- ═══════════════ SETUPS ═══════════════ -->
+<section id="sec-setups" class="sec active">
+  <div class="sec-label">Sélectionner un circuit</div>
+  <div class="cg" id="cGrid"></div>
+  <div class="sp" id="sPanel">
+    <div class="sp-hd">
+      <div>
+        <div class="sp-title" id="spTitle">CIRCUIT</div>
+        <div class="sp-meta" id="spMeta"></div>
+      </div>
+      <div class="wx-wrap">
+        <button class="wx active" onclick="goWx('dry',this)">☀️ SEC</button>
+        <button class="wx" onclick="goWx('wet',this)">🌧️ PLUIE</button>
+        <button class="wx" onclick="goWx('mixed',this)">⛅ MIXTE</button>
+      </div>
+    </div>
+    <div class="sp-body" id="sContent"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ PILOTES ═══════════════ -->
+<section id="sec-drivers" class="sec">
+  <div class="sec-label">Classement Pilotes 2026 — après 5 courses</div>
+  <div class="wrap-card">
+    <table class="std-tbl" id="drvTbl"></table>
+  </div>
+</section>
+
+<!-- ═══════════════ CONSTRUCTEURS ═══════════════ -->
+<section id="sec-constructors" class="sec">
+  <div class="sec-label">Classement Constructeurs 2026</div>
+  <div class="wrap-card">
+    <table class="std-tbl" id="conTbl"></table>
+  </div>
+</section>
+
+<!-- ═══════════════ CALENDRIER ═══════════════ -->
+<section id="sec-calendar" class="sec">
+  <div class="sec-label">22 Grands Prix · 6 Sprints · 2026</div>
+  <div class="cal-grid" id="calGrid"></div>
+</section>
+
+<!-- ═══════════════ RÈGLEMENTS ═══════════════ -->
+<section id="sec-regs" class="sec">
+  <div class="sec-label">Révolution Réglementaire 2026</div>
+  <div class="reg-grid" id="regGrid"></div>
+</section>
+
+<!-- ═══════════════ CONSEILS ═══════════════ -->
+<section id="sec-tips" class="sec">
+  <div class="sec-label">Conseils F1 2026 — Jeu Vidéo</div>
+  <div class="tips-grid" id="tipsGrid"></div>
+</section>
+
+<script>
+/* ════════════════════════════════════
+   DATA
+════════════════════════════════════ */
+
+const CIRCUITS = [
+  { id:'australia', name:'AUSTRALIE',   gp:'Australian GP',        flag:'🇦🇺', lap:'5.278 km', turns:16, char:'Mixte, sections rapides & urbaines' },
+  { id:'china',     name:'CHINE',       gp:'Chinese GP',           flag:'🇨🇳', lap:'5.451 km', turns:16, char:'Mixte, longues lignes droites' },
+  { id:'japan',     name:'JAPON',       gp:'Japanese GP',          flag:'🇯🇵', lap:'5.807 km', turns:18, char:'Charge haute, virages rapides légendaires' },
+  { id:'bahrain',   name:'BAHREÏN',     gp:'Bahrain GP',           flag:'🇧🇭', lap:'5.412 km', turns:15, char:'Haute charge, gestion pneus arrière' },
+  { id:'jeddah',    name:'ARABIE S.',   gp:'Saudi Arabian GP',     flag:'🇸🇦', lap:'6.174 km', turns:27, char:'Vitesse pure, charge minimum' },
+  { id:'miami',     name:'MIAMI',       gp:'Miami GP',             flag:'🇺🇸', lap:'5.412 km', turns:19, char:'Urbain, thermique difficile' },
+  { id:'canada',    name:'CANADA',      gp:'Canadian GP',          flag:'🇨🇦', lap:'4.361 km', turns:14, char:'Freinage violent, longue droite' },
+  { id:'monaco',    name:'MONACO',      gp:'Monaco GP',            flag:'🇲🇨', lap:'3.337 km', turns:19, char:'Max appui, agilité, pas de dépassement' },
+  { id:'spain',     name:'ESPAGNE',     gp:'Spanish GP — Barcelone',flag:'🇪🇸', lap:'4.657 km', turns:14, char:'Équilibré, haute vitesse milieu' },
+  { id:'austria',   name:'AUTRICHE',    gp:'Austrian GP',          flag:'🇦🇹', lap:'4.318 km', turns:10, char:'Courte, virages ultra-rapides' },
+  { id:'britain',   name:'GRANDE-BR.',  gp:'British GP ★ Sprint',  flag:'🇬🇧', lap:'5.891 km', turns:18, char:'Virages rapides légendaires, charge haute' },
+  { id:'belgium',   name:'BELGIQUE',    gp:'Belgian GP',           flag:'🇧🇪', lap:'7.004 km', turns:19, char:'Mixte, Spa légendaire, charge moyenne' },
+  { id:'hungary',   name:'HONGRIE',     gp:'Hungarian GP',         flag:'🇭🇺', lap:'4.381 km', turns:14, char:'Sinueux, max appui, pneus fondent' },
+  { id:'netherlands',name:'PAYS-BAS',   gp:'Dutch GP ★ Sprint',   flag:'🇳🇱', lap:'4.259 km', turns:14, char:'Bancs inclinés, charge haute, vent fort' },
+  { id:'italy',     name:'ITALIE',      gp:'Italian GP — Monza',   flag:'🇮🇹', lap:'5.793 km', turns:11, char:'Temple vitesse, charge minimum absolu' },
+  { id:'madrid',    name:'MADRID 🆕',   gp:'Madrid GP — NOUVEAU',  flag:'🇪🇸', lap:'5.472 km', turns:20, char:'Nouveau circuit, semi-urbain, mixte' },
+  { id:'azerbaijan',name:'AZERBAÏDJAN', gp:'Azerbaijan GP',        flag:'🇦🇿', lap:'6.003 km', turns:20, char:'Longue droite de Bakou, charge basse' },
+  { id:'singapore', name:'SINGAPOUR ★', gp:'Singapore GP — Sprint', flag:'🇸🇬', lap:'4.940 km', turns:19, char:'Max appui, chaleur extrême, freinage' },
+  { id:'usa',       name:'ÉTATS-UNIS',  gp:'US GP — COTA',         flag:'🇺🇸', lap:'5.513 km', turns:20, char:'Très abrasif, COTA mythique' },
+  { id:'mexico',    name:'MEXIQUE',     gp:'Mexico City GP',       flag:'🇲🇽', lap:'4.304 km', turns:17, char:'Haute altitude 2240m, air raréfié' },
+  { id:'brazil',    name:'BRÉSIL',      gp:'São Paulo GP',         flag:'🇧🇷', lap:'4.309 km', turns:15, char:'Charge haute, interlagos historique' },
+  { id:'lasvegas',  name:'LAS VEGAS',   gp:'Las Vegas GP',         flag:'🇺🇸', lap:'6.201 km', turns:17, char:'Charge basse, nuit froide, haute vitesse' },
+  { id:'qatar',     name:'QATAR',       gp:'Qatar GP',             flag:'🇶🇦', lap:'5.380 km', turns:16, char:'Lusail, charge haute, usure pneus sévère' },
+  { id:'abudhabi',  name:'ABU DHABI',   gp:'Abu Dhabi GP — Finale',flag:'🇦🇪', lap:'5.281 km', turns:16, char:'Charge moyenne, sections ultra-rapides' },
+];
+
+/* SETUPS DATA — 2026 : les nouvelles F1 ont une aéro active (déployable), donc les plages changent */
+const SETUPS = {
+  australia: {
+    bestCar:'Mercedes W16', team:'Mercedes-AMG Petronas', carColor:'var(--merc)',
+    dry:{
+      note:'Melbourne 2026 — Russell a dominé ici en ouverture de saison ! La W16 excelle dans les transitions rapide→lent.',
+      tips:['Activer l\'aéro active max dans la chicane finale','Gérer les pneus : la piste est très abrasive en sortie d\'hiver','Attention au safety car fréquent ici'],
+      aero:{aileronAV:7,aileronAR:8,aeroActive:75},suspAV:{camberAV:-2.8,pinceAV:0.10,hauteurAV:2},
+      suspAR:{camberAR:-1.5,pinceAR:0.33,hauteurAR:10},trans:{differentiel:57,freinsAR:55},
+      pneus:{pressionAV:24.5,pressionAR:22.5},freins:{balance:59,pression:100},ers:{depart:95,recuperation:70},
+    },
+    wet:{
+      note:'Melbourne sous la pluie : imprévisible. Réduire les transferts de charge, aéro active en mode pluie.',
+      tips:['Couper l\'aéro active pour maximiser la stabilité','Pression pneus -2.5 PSI vs sec','Profiter du Safety Car pour changer les pneus'],
+      aero:{aileronAV:10,aileronAR:11,aeroActive:40},suspAV:{camberAV:-2.3,pinceAV:0.12,hauteurAV:7},
+      suspAR:{camberAR:-1.1,pinceAR:0.38,hauteurAR:16},trans:{differentiel:72,freinsAR:47},
+      pneus:{pressionAV:21.5,pressionAR:20.0},freins:{balance:56,pression:88},ers:{depart:60,recuperation:90},
+    },
+    mixed:{
+      note:'Conditions changeantes à Melbourne. Stratégie et timing aux stands priment sur le setup.',
+      tips:['Passer aux Intermédiaires dès que possible','Aéro active en position intermédiaire','Garder la souplesse sur la stratégie'],
+      aero:{aileronAV:8,aileronAR:9,aeroActive:55},suspAV:{camberAV:-2.5,pinceAV:0.11,hauteurAV:4},
+      suspAR:{camberAR:-1.3,pinceAR:0.35,hauteurAR:13},trans:{differentiel:63,freinsAR:51},
+      pneus:{pressionAV:22.5,pressionAR:21.0},freins:{balance:57,pression:93},ers:{depart:75,recuperation:80},
+    }
+  },
+  monaco: {
+    bestCar:'Ferrari SF-26', team:'Scuderia Ferrari', carColor:'var(--ferrari)',
+    dry:{
+      note:'Monaco 2026 : l\'aéro active est désactivée sur décision FIA (trop dangereuse dans les rues). Max appui statique obligatoire.',
+      tips:['Aéro active DÉSACTIVÉE pour Monaco — winglets fixes uniquement','La qualif est TOUT — course impossible à dépasser','Leclerc en terrain favori — Ferrari idéale ici'],
+      aero:{aileronAV:11,aileronAR:11,aeroActive:0},suspAV:{camberAV:-3.1,pinceAV:0.12,hauteurAV:0},
+      suspAR:{camberAR:-1.8,pinceAR:0.41,hauteurAR:4},trans:{differentiel:82,freinsAR:62},
+      pneus:{pressionAV:26.0,pressionAR:24.0},freins:{balance:63,pression:100},ers:{depart:100,recuperation:55},
+    },
+    wet:{
+      note:'Monaco pluie : survie absolue. Winglets fixes au max, différentiel très haut.',
+      tips:['Aucun dépassement possible — juste survivre','Attention aux Armco partout','Le Virtual Safety Car peut apparaître à tout moment'],
+      aero:{aileronAV:11,aileronAR:11,aeroActive:0},suspAV:{camberAV:-2.8,pinceAV:0.13,hauteurAV:6},
+      suspAR:{camberAR:-1.4,pinceAR:0.42,hauteurAR:13},trans:{differentiel:88,freinsAR:52},
+      pneus:{pressionAV:22.0,pressionAR:20.0},freins:{balance:58,pression:80},ers:{depart:50,recuperation:95},
+    },
+    mixed:{
+      note:'Conditions mixtes ici : survie totale. Patience est la clé.',
+      tips:['Intermédiaires sortent très tôt à Monaco','Ne jamais prendre de risques dans les sections humides','Priorité : finir la course'],
+      aero:{aileronAV:11,aileronAR:11,aeroActive:0},suspAV:{camberAV:-3.0,pinceAV:0.12,hauteurAV:3},
+      suspAR:{camberAR:-1.6,pinceAR:0.41,hauteurAR:8},trans:{differentiel:85,freinsAR:57},
+      pneus:{pressionAV:23.5,pressionAR:21.5},freins:{balance:60,pression:90},ers:{depart:65,recuperation:85},
+    }
+  },
+  italy: {
+    bestCar:'McLaren MCL39', team:'McLaren F1 Team', carColor:'var(--mclaren)',
+    dry:{
+      note:'Monza 2026 — temple de la vitesse pure. Charge au minimum absolu, aéro active en mode "vitesse de pointe".',
+      tips:['Aéro active en mode maximisation vitesse de pointe','Aileron arrière au minimum légal','McLaren dispose de la meilleure vitesse de pointe 2026'],
+      aero:{aileronAV:1,aileronAR:1,aeroActive:95},suspAV:{camberAV:-2.3,pinceAV:0.07,hauteurAV:1},
+      suspAR:{camberAR:-1.2,pinceAR:0.28,hauteurAR:7},trans:{differentiel:50,freinsAR:54},
+      pneus:{pressionAV:23.5,pressionAR:21.5},freins:{balance:60,pression:100},ers:{depart:100,recuperation:65},
+    },
+    wet:{
+      note:'Monza pluie : visibilité catastrophique. Monter la charge même si ça coûte de la vitesse.',
+      tips:['Ne pas lever le pied brusquement sous le spray','Freiner bien plus tôt aux chicanes','Les éclaboussures à 350 km/h sont aveugles'],
+      aero:{aileronAV:8,aileronAR:9,aeroActive:50},suspAV:{camberAV:-2.0,pinceAV:0.10,hauteurAV:6},
+      suspAR:{camberAR:-1.0,pinceAR:0.35,hauteurAR:15},trans:{differentiel:70,freinsAR:47},
+      pneus:{pressionAV:21.0,pressionAR:19.5},freins:{balance:55,pression:85},ers:{depart:55,recuperation:90},
+    },
+    mixed:{
+      note:'Piste qui sèche vite à Monza. Rester dans la trajectoire sèche le plus longtemps possible.',
+      tips:['L\'asphalte de Monza sèche très rapidement','Chronométrer les passages aux zones humides','Les intermédiaires font des merveilles ici'],
+      aero:{aileronAV:4,aileronAR:5,aeroActive:75},suspAV:{camberAV:-2.1,pinceAV:0.08,hauteurAV:3},
+      suspAR:{camberAR:-1.1,pinceAR:0.31,hauteurAR:10},trans:{differentiel:58,freinsAR:51},
+      pneus:{pressionAV:22.0,pressionAR:20.5},freins:{balance:57,pression:92},ers:{depart:80,recuperation:72},
+    }
+  },
+  madrid: {
+    bestCar:'Mercedes W16', team:'Mercedes-AMG Petronas', carColor:'var(--merc)',
+    dry:{
+      note:'Madrid 2026 — tout nouveau circuit ! Semi-urbain dans la capitale espagnole. Inconnue totale : setup basé sur la simulation.',
+      tips:['Circuit NOUVEAU — les données de simulation guident le setup','Asphalte frais : grip élevé mais imprévisible','Ambiance unique au centre de Madrid'],
+      aero:{aileronAV:7,aileronAR:8,aeroActive:70},suspAV:{camberAV:-2.7,pinceAV:0.10,hauteurAV:2},
+      suspAR:{camberAR:-1.5,pinceAR:0.33,hauteurAR:9},trans:{differentiel:60,freinsAR:55},
+      pneus:{pressionAV:24.0,pressionAR:22.0},freins:{balance:58,pression:100},ers:{depart:90,recuperation:70},
+    },
+    wet:{
+      note:'Pluie à Madrid : circuit inconnu + pluie = danger élevé. Prudence maximum.',
+      tips:['Asphalte neuf peut être très glissant sous la pluie','Réduire la vitesse dans les sections inconnues','Rester très conservateur en qualif sous la pluie'],
+      aero:{aileronAV:10,aileronAR:11,aeroActive:35},suspAV:{camberAV:-2.3,pinceAV:0.12,hauteurAV:7},
+      suspAR:{camberAR:-1.1,pinceAR:0.38,hauteurAR:16},trans:{differentiel:74,freinsAR:46},
+      pneus:{pressionAV:21.0,pressionAR:19.5},freins:{balance:55,pression:86},ers:{depart:55,recuperation:92},
+    },
+    mixed:{
+      note:'Madrid mixte : inconnu total. Stratégie et improvisation.',
+      tips:['Suivre les pilotes devant pour apprendre la piste','Les Intermédiaires seront très efficaces ici','Le Safety Car est probable pour un nouveau circuit'],
+      aero:{aileronAV:8,aileronAR:9,aeroActive:55},suspAV:{camberAV:-2.5,pinceAV:0.11,hauteurAV:4},
+      suspAR:{camberAR:-1.3,pinceAR:0.35,hauteurAR:12},trans:{differentiel:65,freinsAR:51},
+      pneus:{pressionAV:22.5,pressionAR:21.0},freins:{balance:57,pression:92},ers:{depart:72,recuperation:80},
+    }
+  },
+};
+
+function getDefault(c, cond) {
+  const d = {
+    dry:  {aero:{aileronAV:6,aileronAR:7,aeroActive:70},suspAV:{camberAV:-2.7,pinceAV:0.09,hauteurAV:2},suspAR:{camberAR:-1.5,pinceAR:0.33,hauteurAR:10},trans:{differentiel:57,freinsAR:54},pneus:{pressionAV:24.0,pressionAR:22.0},freins:{balance:58,pression:100},ers:{depart:90,recuperation:70}},
+    wet:  {aero:{aileronAV:10,aileronAR:11,aeroActive:30},suspAV:{camberAV:-2.3,pinceAV:0.11,hauteurAV:7},suspAR:{camberAR:-1.1,pinceAR:0.37,hauteurAR:16},trans:{differentiel:72,freinsAR:47},pneus:{pressionAV:21.5,pressionAR:19.5},freins:{balance:55,pression:88},ers:{depart:55,recuperation:92}},
+    mixed:{aero:{aileronAV:8,aileronAR:9,aeroActive:50},suspAV:{camberAV:-2.5,pinceAV:0.10,hauteurAV:4},suspAR:{camberAR:-1.3,pinceAR:0.35,hauteurAR:13},trans:{differentiel:64,freinsAR:51},pneus:{pressionAV:22.5,pressionAR:21.0},freins:{balance:57,pression:93},ers:{depart:72,recuperation:82}},
+  };
+  const notes = {dry:`Circuit ${c.name} par temps sec — configuration optimisée 2026.`,wet:`Pluie à ${c.name} — charge aéro augmentée, ERS en récupération prioritaire.`,mixed:`Conditions mixtes à ${c.name} — équilibre stratégie et performance.`};
+  const tips = {
+    dry:['Optimiser l\'aéro active selon les sections','Gérer les pneus sur les 30 derniers tours','Économie ERS en ligne droite'],
+    wet:['Réduire la vitesse dans les virages rapides','Freinage progressif et anticipé','Maximiser la récupération ERS'],
+    mixed:['Choisir le bon timing pour changer de pneus','Adapter la trajectoire à l\'état de la piste','Rester flexible sur la stratégie'],
+  };
+  return {...d[cond], note:notes[cond], tips:tips[cond]};
+}
+
+/* PILOTES 2026 — classement après 5 courses */
+const DRIVERS = [
+  {pos:1, name:'Kimi Antonelli',   flag:'🇮🇹', team:'Mercedes',       color:'var(--merc)',    pts:131, rookie:true},
+  {pos:2, name:'George Russell',   flag:'🇬🇧', team:'Mercedes',       color:'var(--merc)',    pts:88},
+  {pos:3, name:'Charles Leclerc',  flag:'🇲🇨', team:'Ferrari',        color:'var(--ferrari)', pts:75},
+  {pos:4, name:'Lewis Hamilton',   flag:'🇬🇧', team:'Ferrari',        color:'var(--ferrari)', pts:72},
+  {pos:5, name:'Lando Norris',     flag:'🇬🇧', team:'McLaren',        color:'var(--mclaren)', pts:58},
+  {pos:6, name:'Max Verstappen',   flag:'🇳🇱', team:'Red Bull',       color:'var(--redbull)', pts:43},
+  {pos:7, name:'Oscar Piastri',    flag:'🇦🇺', team:'McLaren',        color:'var(--mclaren)', pts:48},
+  {pos:8, name:'Pierre Gasly',     flag:'🇫🇷', team:'Alpine',         color:'var(--alpine)',  pts:20},
+  {pos:9, name:'Oliver Bearman',   flag:'🇬🇧', team:'Haas',           color:'var(--haas)',    pts:18},
+  {pos:10,name:'Liam Lawson',      flag:'🇳🇿', team:'Racing Bulls',   color:'var(--rb)',      pts:16},
+  {pos:11,name:'Carlos Sainz',     flag:'🇪🇸', team:'Williams',       color:'var(--williams)',pts:14},
+  {pos:12,name:'Esteban Ocon',     flag:'🇫🇷', team:'Haas',           color:'var(--haas)',    pts:12},
+  {pos:13,name:'Isack Hadjar',     flag:'🇫🇷', team:'Red Bull',       color:'var(--redbull)', pts:10, rookie:true},
+  {pos:14,name:'Fernando Alonso',  flag:'🇪🇸', team:'Aston Martin',   color:'var(--aston)',   pts:8},
+  {pos:15,name:'Franco Colapinto', flag:'🇦🇷', team:'Alpine',         color:'var(--alpine)',  pts:6},
+  {pos:16,name:'Nico Hülkenberg',  flag:'🇩🇪', team:'Audi',           color:'var(--audi)',    pts:5},
+  {pos:17,name:'Gabriel Bortoleto',flag:'🇧🇷', team:'Audi',           color:'var(--audi)',    pts:4, rookie:true},
+  {pos:18,name:'Alex Albon',       flag:'🇹🇭', team:'Williams',       color:'var(--williams)',pts:3},
+  {pos:19,name:'Arvid Lindblad',   flag:'🇸🇪', team:'Racing Bulls',   color:'var(--rb)',      pts:0, rookie:true},
+  {pos:20,name:'Lance Stroll',     flag:'🇨🇦', team:'Aston Martin',   color:'var(--aston)',   pts:0},
+  {pos:21,name:'Sergio Pérez',     flag:'🇲🇽', team:'Cadillac',       color:'var(--cadillac)',pts:0},
+  {pos:22,name:'Valtteri Bottas',  flag:'🇫🇮', team:'Cadillac',       color:'var(--cadillac)',pts:0},
+];
+
+/* CONSTRUCTEURS 2026 */
+const CONSTRUCTORS = [
+  {pos:1, name:'Mercedes',      color:'var(--merc)',    engine:'Mercedes PU26 (V6 Hybride)',  pts:219, isNew:false, drivers:'Antonelli / Russell'},
+  {pos:2, name:'Ferrari',       color:'var(--ferrari)', engine:'Ferrari 067 (V6 Hybride)',    pts:147, isNew:false, drivers:'Leclerc / Hamilton'},
+  {pos:3, name:'McLaren',       color:'var(--mclaren)', engine:'Mercedes PU26',               pts:106, isNew:false, drivers:'Norris / Piastri'},
+  {pos:4, name:'Red Bull',      color:'var(--redbull)', engine:'Honda RBPTH002',              pts:53,  isNew:false, drivers:'Verstappen / Hadjar'},
+  {pos:5, name:'Haas',          color:'var(--haas)',    engine:'Ferrari 067',                 pts:30,  isNew:false, drivers:'Bearman / Ocon'},
+  {pos:6, name:'Alpine',        color:'var(--alpine)',  engine:'Renault E-tech 2026',         pts:26,  isNew:false, drivers:'Gasly / Colapinto'},
+  {pos:7, name:'Racing Bulls',  color:'var(--rb)',      engine:'Honda RBPTH002',              pts:16,  isNew:false, drivers:'Lawson / Lindblad'},
+  {pos:8, name:'Williams',      color:'var(--williams)',engine:'Mercedes PU26',               pts:17,  isNew:false, drivers:'Sainz / Albon'},
+  {pos:9, name:'Audi 🆕',       color:'var(--audi)',    engine:'Audi PU26 (V6 Hybride)',      pts:9,   isNew:true,  drivers:'Hülkenberg / Bortoleto'},
+  {pos:10,name:'Aston Martin',  color:'var(--aston)',   engine:'Mercedes PU26',               pts:8,   isNew:false, drivers:'Alonso / Stroll'},
+  {pos:11,name:'Cadillac 🆕',   color:'var(--cadillac)',engine:'GM PU26 (V6 Hybride)',        pts:0,   isNew:true,  drivers:'Pérez / Bottas'},
+];
+
+/* CALENDRIER 2026 */
+const CALENDAR = [
+  {rnd:1,  name:'AUSTRALIE',    flag:'🇦🇺', date:'6-8 Mars',    circuit:'Melbourne',        sprint:false, done:true,   winner:'Russell'},
+  {rnd:2,  name:'CHINE',        flag:'🇨🇳', date:'13-15 Mars',  circuit:'Shanghai',          sprint:true,  done:true,   winner:'Antonelli'},
+  {rnd:3,  name:'JAPON',        flag:'🇯🇵', date:'27-29 Mars',  circuit:'Suzuka',            sprint:false, done:true,   winner:'Antonelli'},
+  {rnd:4,  name:'BAHREÏN',      flag:'🇧🇭', date:'10-12 Avr',   circuit:'Sakhir',            sprint:false, done:true,   winner:'Antonelli'},
+  {rnd:5,  name:'CANADA',       flag:'🇨🇦', date:'22-24 Mai',   circuit:'Montréal',          sprint:false, done:true,   winner:'Antonelli'},
+  {rnd:6,  name:'MONACO',       flag:'🇲🇨', date:'5-7 Juin',    circuit:'Monte-Carlo',       sprint:false, done:false,  current:true},
+  {rnd:7,  name:'ESPAGNE',      flag:'🇪🇸', date:'12-14 Juin',  circuit:'Barcelona-Catalunya',sprint:false,done:false},
+  {rnd:8,  name:'AUTRICHE',     flag:'🇦🇹', date:'26-28 Juin',  circuit:'Red Bull Ring',     sprint:false, done:false},
+  {rnd:9,  name:'GRANDE-BRET.', flag:'🇬🇧', date:'3-5 Juil',    circuit:'Silverstone',       sprint:true,  done:false},
+  {rnd:10, name:'BELGIQUE',     flag:'🇧🇪', date:'17-19 Juil',  circuit:'Spa-Francorchamps', sprint:false, done:false},
+  {rnd:11, name:'HONGRIE',      flag:'🇭🇺', date:'24-26 Juil',  circuit:'Budapest',          sprint:false, done:false},
+  {rnd:12, name:'PAYS-BAS',     flag:'🇳🇱', date:'21-23 Août',  circuit:'Zandvoort',         sprint:true,  done:false},
+  {rnd:13, name:'ITALIE',       flag:'🇮🇹', date:'4-6 Sept',    circuit:'Monza',             sprint:false, done:false},
+  {rnd:14, name:'MADRID 🆕',    flag:'🇪🇸', date:'11-13 Sept',  circuit:'Madrid',            sprint:false, done:false},
+  {rnd:15, name:'AZERBAÏDJAN',  flag:'🇦🇿', date:'25-27 Sept',  circuit:'Bakou',             sprint:false, done:false},
+  {rnd:16, name:'SINGAPOUR',    flag:'🇸🇬', date:'9-11 Oct',    circuit:'Marina Bay',        sprint:true,  done:false},
+  {rnd:17, name:'ÉTATS-UNIS',   flag:'🇺🇸', date:'23-25 Oct',   circuit:'COTA',              sprint:false, done:false},
+  {rnd:18, name:'MEXIQUE',      flag:'🇲🇽', date:'30 Oct-1 Nov',circuit:'Mexico City',       sprint:false, done:false},
+  {rnd:19, name:'BRÉSIL',       flag:'🇧🇷', date:'6-8 Nov',     circuit:'Interlagos',        sprint:true,  done:false},
+  {rnd:20, name:'LAS VEGAS',    flag:'🇺🇸', date:'19-21 Nov',   circuit:'Las Vegas Strip',   sprint:false, done:false},
+  {rnd:21, name:'QATAR',        flag:'🇶🇦', date:'27-29 Nov',   circuit:'Lusail',            sprint:true,  done:false},
+  {rnd:22, name:'ABU DHABI',    flag:'🇦🇪', date:'4-6 Déc',     circuit:'Yas Marina',        sprint:false, done:false},
+];
+
+/* RÈGLEMENTS 2026 */
+const REGS = [
+  {color:'cyan', tag:'tag-cyan', title:'MOTEURS 50/50', body:`La révolution moteur 2026 : <strong>50% de la puissance vient du moteur thermique</strong> (V6 turbo 1.6L), et <strong>50% de l'ERS</strong> (Energy Recovery System) électrique. La puissance totale atteint environ <strong>1000 ch</strong>. Les nouvelles unités de puissance sont radicalement différentes — Audi et GM (Cadillac) arrivent comme nouveaux motoristes.`},
+  {color:'lime', tag:'tag-lime', title:'AÉRODYNAMIQUE ACTIVE', body:`Les nouvelles F1 2026 disposent d'une <strong>aérodynamique active</strong> — les ailettes et les ailerons peuvent se déployer ou se rétracter pendant la course. <strong>En ligne droite</strong> : aéro rétractée pour moins de traînée. <strong>En virage</strong> : aéro déployée pour plus d'appui. Monaco est l'exception — l'aéro active est désactivée par la FIA.`},
+  {color:'amber', tag:'tag-amber', title:'NOUVELLES ÉQUIPES', body:`La grille 2026 compte <strong>11 équipes</strong> pour la première fois depuis longtemps. <strong>Cadillac/GM</strong> fait ses débuts avec Sergio Pérez et Valtteri Bottas. <strong>Audi</strong> a repris l'ancienne équipe Sauber et aligne Nico Hülkenberg et Gabriel Bortoleto. Deux constructeurs premium américain et allemand rejoignent la F1.`},
+  {color:'red', tag:'tag-red', title:'POIDS & DIMENSIONS', body:`Les F1 2026 sont <strong>plus légères et plus courtes</strong> que les générations précédentes. Poids minimum : <strong>768 kg</strong> (vs 798 kg en 2024). Les voitures sont 10 cm plus courtes et 3 cm moins larges. L'objectif : améliorer les dépassements et rendre les courses plus spectaculaires avec la nouvelle aéro active.`},
+  {color:'violet', tag:'tag-violet', title:'ERS & DÉPLOIEMENT', body:`Le système ERS 2026 est <strong>4x plus puissant</strong> qu'en 2024. La batterie peut être déployée sur des périodes plus courtes et plus intenses. La <strong>récupération au freinage</strong> est maximisée. Les pilotes ont un contrôle plus fin du déploiement électrique via le volant. La gestion de l'énergie est devenue aussi cruciale que la gestion des pneus.`},
+  {color:'cyan', tag:'tag-cyan', title:'NOUVEAU CIRCUIT MADRID', body:`Le <strong>Grand Prix de Madrid</strong> fait ses débuts en 2026, remplaçant Imola. Le circuit semi-urbain dans la capitale espagnole parcourt le parc IFEMA. Long de 5.472 km avec 20 virages, il combine sections rapides et chicanes urbaines. L'Espagne accueille donc <strong>deux Grands Prix en 2026</strong> : Barcelone (Juin) et Madrid (Septembre).`},
+  {color:'lime', tag:'tag-lime', title:'6 WEEK-ENDS SPRINT', body:`La saison 2026 compte <strong>6 week-ends Sprint</strong> : Chine, Grande-Bretagne, Pays-Bas, Singapour, Brésil, et Qatar. Le format Sprint donne des points supplémentaires et plus de courses. Les Sprints ont leur propre grille de départ via une session de Sprint Qualifying le vendredi.`},
+  {color:'amber', tag:'tag-amber', title:'22 PILOTES SUR LA GRILLE', body:`Avec 11 équipes, la grille F1 2026 compte <strong>22 pilotes</strong> — un record depuis des décennies. Les rookies de 2026 : Arvid Lindblad (Racing Bulls) — le seul vrai rookie, 18 ans. Les confirmations notables : Hamilton chez Ferrari (2e saison), Colapinto chez Alpine, et le retour de Pérez & Bottas chez Cadillac.`},
+];
+
+/* CONSEILS */
+const TIPS = [
+  {icon:'⚡',title:'GÉRER L\'ERS 2026',body:`L'ERS est révolutionnaire en 2026 — <strong>50% de la puissance</strong>. Gérer la batterie est crucial :<ul><li><strong>Départ</strong> : 90-100% ERS pour maximiser l'accélération</li><li><strong>Course</strong> : Économiser sur les lignes droites, récupérer au freinage</li><li><strong>Attaque</strong> : Déployer 100% ERS dans les zones de dépassement</li><li><strong>Fin de course</strong> : Garder de l'ERS pour les 5 derniers tours</li></ul>`},
+  {icon:'🔀',title:'AÉRO ACTIVE',body:`La nouvelle aérodynamique active change tout en 2026 :<ul><li><strong>Ligne droite</strong> : Aéro rétractée (95%+) = moins de traînée, +15 km/h</li><li><strong>Virages</strong> : Aéro déployée = plus d'appui, meilleure tenue</li><li><strong>Monaco</strong> : Aéro active désactivée par la FIA — winglets fixes</li><li><strong>Pluie</strong> : Réduire l'activation aéro active — préférer la stabilité</li></ul>`},
+  {icon:'🏎️',title:'CHOISIR SA VOITURE',body:`Les nouvelles hiérarchies 2026 :<ul><li><strong>Mercedes W16</strong> : Meilleure voiture tous circuits confondus</li><li><strong>Ferrari SF-26</strong> : Excellente sur circuits lents et urbains</li><li><strong>McLaren MCL39</strong> : Meilleure en vitesse de pointe</li><li><strong>Red Bull RB21</strong> : Traction arrière exceptionnelle</li><li><strong>Audi A26</strong> : Moteur ERS puissant, châssis en développement</li></ul>`},
+  {icon:'🎯',title:'SETUP DIFFÉRENTIEL 2026',body:`Le différentiel est encore plus critique avec le couple électrique :<ul><li><strong>Circuits urbains</strong> : Différentiel 70-88% (Monaco, Singapour)</li><li><strong>Circuits rapides</strong> : 50-60% pour la traction</li><li><strong>Pluie</strong> : Augmenter de 10-15% vs sec</li><li><span class="warn">⚠️ Attention</span> : Le couple ERS peut provoquer des tours de roue — différentiel élevé aide</li></ul>`},
+  {icon:'🛑',title:'FREINAGE & ERS RÉCUP.',body:`En 2026, le freinage charge l'ERS automatiquement. Optimiser :<ul><li><strong>Freiner fort</strong> = plus de récupération ERS</li><li><strong>Balance frein</strong> : Légèrement plus vers l'avant qu'en 2024</li><li><strong>Pression frein</strong> : 100% sur freinage fort uniquement</li><li>Le <strong>frein moteur</strong> électrique peut remplacer le frein physique</li></ul>`},
+  {icon:'🌧️',title:'PLUIE 2026 : ERS CRITIQUE',body:`La pluie interagit avec l'ERS de façon nouvelle :<ul><li><strong>L'ERS peut provoquer des aquaplaning</strong> si déployé trop fort</li><li>Réduire le déploiement ERS à 40-60% sous la pluie</li><li><strong>Récupération prioritaire</strong> : Charger la batterie plutôt que déployer</li><li>Les pneus pluie ont moins de grip avec le couple électrique instantané</li></ul>`},
+  {icon:'🏁',title:'STRATÉGIE PNEUS 2026',body:`Les pneus 2026 sont redessinés pour les nouvelles puissances :<ul><li><strong>Tendre</strong> : Qualif et départ sprint — attention à la dégradation rapide</li><li><strong>Médium</strong> : Pneu universel 2026 — durée améliorée</li><li><strong>Dur</strong> : Circuits abrasifs (COTA, Bahreïn, Qatar)</li><li>Le couple électrique use les pneus arrière plus vite qu'avant</li></ul>`},
+  {icon:'🆕',title:'CIRCUITS NOUVEAUX 2026',body:`Madrid et les nouveaux enjeux :<ul><li><strong>Madrid</strong> : Asphalte neuf = grip élevé, mais température imprévisible</li><li>Le circuit est inconnu de tous — la simulation FP1 est cruciale</li><li>Préparer un setup ultra-conservateur pour Madrid FP1</li><li>Les nouvelles équipes (Audi, Cadillac) n'ont aucune donnée historique</li></ul>`},
+];
+
+/* ════════════════════════════════════
+   STATE
+════════════════════════════════════ */
+let selCircuit = null;
+let selWx = 'dry';
+
+/* ════════════════════════════════════
+   FUNCTIONS
+════════════════════════════════════ */
+function goTab(id, btn) {
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function goWx(cond, btn) {
+  selWx = cond;
+  document.querySelectorAll('.wx').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if(selCircuit) renderSetup();
+}
+
+function pct(v,mn,mx){return Math.min(100,Math.max(0,Math.round(((v-mn)/(mx-mn))*100)));}
+
+function renderCircuits() {
+  document.getElementById('cGrid').innerHTML = CIRCUITS.map(c=>`
+    <div class="cc ${selCircuit===c.id?'active':''}" onclick="selC('${c.id}')">
+      <span class="flag">${c.flag}</span>
+      <div>
+        <div class="cc-n">${c.name}</div>
+        <div class="cc-s">${c.lap} · ${c.turns} virages</div>
+      </div>
+    </div>`).join('');
+}
+
+function selC(id) {
+  selCircuit = id;
+  renderCircuits();
+  const panel = document.getElementById('sPanel');
+  panel.classList.add('vis');
+  renderSetup();
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function renderSetup() {
+  const c = CIRCUITS.find(x=>x.id===selCircuit);
+  if(!c) return;
+  const raw = SETUPS[selCircuit]||{};
+  const setup = raw[selWx] || getDefault(c, selWx);
+  const bestCar = raw.bestCar||'Mercedes W16';
+  const team = raw.team||'Mercedes-AMG Petronas';
+  const carColor = raw.carColor||'var(--merc)';
+  const wxLabel = {dry:'Temps Sec ☀️',wet:'Pluie 🌧️',mixed:'Mixte ⛅'}[selWx];
+
+  document.getElementById('spTitle').innerHTML = `<span class="hl">${c.flag} ${c.name}</span>`;
+  document.getElementById('spMeta').textContent = `${c.gp} · ${c.lap} · ${c.turns} virages · ${c.char}`;
+
+  document.getElementById('sContent').innerHTML = `
+  <div class="anim">
+    <div class="cr">
+      <div class="cr-left">
+        <div class="cr-chip">MEILLEURE VOITURE 2026</div>
+        <div class="cr-car" style="color:${carColor}">${bestCar}</div>
+        <div class="cr-team">${team}</div>
+        <div style="margin-top:.5rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted)">${wxLabel}</div>
+      </div>
+      <div class="cr-note">
+        ${setup.note}
+        <div class="cr-tips">
+          ${setup.tips.map(t=>`<div class="ct"><span class="ct-arrow">▸</span>${t}</div>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <div class="sg">
+      <!-- AÉRO -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">💨</span>AÉRODYNAMIQUE</div>
+        ${sRow('Aileron Avant',setup.aero.aileronAV+' / 11','var(--cyan)',pct(setup.aero.aileronAV,1,11),'var(--cyan)')}
+        ${sRow('Aileron Arrière',setup.aero.aileronAR+' / 11','var(--cyan)',pct(setup.aero.aileronAR,1,11),'var(--cyan)')}
+        ${sRow('Aéro Active',setup.aero.aeroActive+'%','var(--lime)',setup.aero.aeroActive,'var(--lime)')}
+      </div>
+      <!-- SUSP AV -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">🔩</span>SUSPENSION AVANT</div>
+        ${sRow('Carrossage',setup.suspAV.camberAV+'°','var(--txt)',null,null)}
+        ${sRow('Pincement',setup.suspAV.pinceAV+'°','var(--txt)',null,null)}
+        ${sRow('Hauteur caisse',setup.suspAV.hauteurAV+' mm','var(--txt)',pct(setup.suspAV.hauteurAV,0,20),'var(--muted2)')}
+      </div>
+      <!-- SUSP AR -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">🔩</span>SUSPENSION ARRIÈRE</div>
+        ${sRow('Carrossage',setup.suspAR.camberAR+'°','var(--txt)',null,null)}
+        ${sRow('Pincement',setup.suspAR.pinceAR+'°','var(--txt)',null,null)}
+        ${sRow('Hauteur caisse',setup.suspAR.hauteurAR+' mm','var(--txt)',pct(setup.suspAR.hauteurAR,0,20),'var(--muted2)')}
+      </div>
+      <!-- TRANS -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">⚙️</span>TRANSMISSION</div>
+        ${sRow('Différentiel',setup.trans.differentiel+'%','var(--gold)',setup.trans.differentiel,'var(--gold)')}
+        ${sRow('Frein moteur AR',setup.trans.freinsAR+'%','var(--gold)',setup.trans.freinsAR,'var(--gold)')}
+      </div>
+      <!-- PNEUS -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">🏁</span>PRESSION PNEUS</div>
+        ${sRow('Pression Avant',setup.pneus.pressionAV+' PSI','var(--lime)',pct(setup.pneus.pressionAV,18,28),'var(--lime)')}
+        ${sRow('Pression Arrière',setup.pneus.pressionAR+' PSI','var(--lime)',pct(setup.pneus.pressionAR,16,26),'var(--lime)')}
+      </div>
+      <!-- ERS 2026 -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">⚡</span>ERS 2026</div>
+        ${sRow('Déploiement départ',setup.ers.depart+'%','var(--amber)',setup.ers.depart,'var(--amber)')}
+        ${sRow('Récupération',setup.ers.recuperation+'%','var(--amber)',setup.ers.recuperation,'var(--amber)')}
+      </div>
+      <!-- FREINS -->
+      <div class="sb">
+        <div class="sb-t"><span class="icon">🛑</span>FREINAGE</div>
+        ${sRow('Balance (BB)',setup.freins.balance+'%','var(--red)',pct(setup.freins.balance,50,70),'var(--red)')}
+        ${sRow('Pression freinage',setup.freins.pression+'%','var(--red)',setup.freins.pression,'var(--red)')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function sRow(label, val, valColor, barPct, barColor) {
+  const barHtml = barPct!==null
+    ? `<div class="sr-bar"><div class="sr-fill" style="width:${barPct}%;background:${barColor}"></div></div>`
+    : `<div style="flex:1"></div>`;
+  return `
+    <div class="sr">
+      <div class="sr-l">${label}</div>
+      ${barHtml}
+      <div class="sr-v" style="color:${valColor}">${val}</div>
+    </div>`;
+}
+
+function renderDrivers() {
+  const maxPts = Math.max(...DRIVERS.map(d=>d.pts),1);
+  document.getElementById('drvTbl').innerHTML = `
+    <thead><tr>
+      <th>POS</th><th>PILOTE</th><th>ÉQUIPE</th><th style="text-align:right">PTS</th>
+    </tr></thead>
+    <tbody>${DRIVERS.map(d=>{
+      const posClass = d.pos<=3?'pos'+d.pos:'posn';
+      const posLabel = d.pos===1?'🥇':d.pos===2?'🥈':d.pos===3?'🥉':d.pos;
+      return `<tr>
+        <td><span class="pos-num ${posClass}">${posLabel}</span></td>
+        <td>
+          <span class="drv-flag">${d.flag}</span>
+          <span class="drv-name">${d.name}</span>
+          ${d.rookie?'<span class="rookie-badge">ROOKIE</span>':''}
+        </td>
+        <td>
+          <span class="team-dot" style="background:${d.color}"></span>
+          <span class="tm-name">${d.team}</span>
+          <div class="pts-strip" style="width:${(d.pts/maxPts*100).toFixed(1)}%;max-width:100px;background:${d.color}"></div>
+        </td>
+        <td class="pts-val" style="color:${d.color};text-align:right">${d.pts}</td>
+      </tr>`;
+    }).join('')}</tbody>`;
+}
+
+function renderConstructors() {
+  const maxPts = Math.max(...CONSTRUCTORS.map(c=>c.pts),1);
+  document.getElementById('conTbl').innerHTML = `
+    <thead><tr>
+      <th>POS</th><th>ÉQUIPE</th><th>PILOTES</th><th>MOTEUR</th><th style="text-align:right">PTS</th>
+    </tr></thead>
+    <tbody>${CONSTRUCTORS.map(c=>{
+      const posClass = c.pos<=3?'pos'+c.pos:'posn';
+      const posLabel = c.pos===1?'🥇':c.pos===2?'🥈':c.pos===3?'🥉':c.pos;
+      return `<tr>
+        <td><span class="pos-num ${posClass}">${posLabel}</span></td>
+        <td>
+          <span class="team-dot" style="background:${c.color}"></span>
+          <strong style="color:${c.color};font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:1px">${c.name}</strong>
+          ${c.isNew?'<span class="new-badge">NOUVEAU</span>':''}
+          <div class="pts-strip" style="width:${(c.pts/maxPts*100).toFixed(1)}%;max-width:100px;background:${c.color}"></div>
+        </td>
+        <td class="tm-name">${c.drivers}</td>
+        <td><span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted)">${c.engine}</span></td>
+        <td class="pts-val" style="color:${c.color};text-align:right">${c.pts}</td>
+      </tr>`;
+    }).join('')}</tbody>`;
+}
+
+function renderCalendar() {
+  document.getElementById('calGrid').innerHTML = CALENDAR.map(r=>{
+    const cls = r.done?'done':r.current?'current':'upcoming';
+    return `<div class="race-card ${cls} anim">
+      <div class="rc-top">
+        <span class="rnd ${r.sprint?'sprint':''}">R${r.rnd}${r.sprint?' ★':''}</span>
+        <div>
+          <div class="rc-name">${r.flag} ${r.name}</div>
+        </div>
+      </div>
+      <div class="rc-body">
+        <div class="rc-det">📅 ${r.date} 2026</div>
+        <div class="rc-det">🏟️ ${r.circuit}</div>
+        ${r.sprint?'<div class="rc-det" style="color:var(--lime)">⭐ Week-end Sprint</div>':''}
+        ${r.done?`<div class="rc-win"><span class="rc-win-lbl">🏆 VAINQUEUR :</span><span class="rc-win-name">${r.winner}</span></div>`:''}
+        ${r.current?`<div class="rc-upcoming-lbl"><span class="live"><span class="live-dot"></span>EN COURS</span></div>`:''}
+        ${!r.done&&!r.current?`<div class="rc-upcoming-lbl">À venir</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderRegs() {
+  document.getElementById('regGrid').innerHTML = REGS.map(r=>`
+    <div class="reg-card ${r.color} anim">
+      <span class="reg-tag ${r.tag}">${r.title}</span>
+      <div class="reg-body">${r.body}</div>
+    </div>`).join('');
+}
+
+function renderTips() {
+  document.getElementById('tipsGrid').innerHTML = TIPS.map(t=>`
+    <div class="tip-card anim">
+      <div class="tip-icon">${t.icon}</div>
+      <div class="tip-title">${t.title}</div>
+      <div class="tip-body">${t.body}</div>
+    </div>`).join('');
+}
+
+/* ════════════════════════════════════
+   INIT
+════════════════════════════════════ */
+renderCircuits();
+renderDrivers();
+renderConstructors();
+renderCalendar();
+renderRegs();
+renderTips();
+</script>
+</body>
+</html>
